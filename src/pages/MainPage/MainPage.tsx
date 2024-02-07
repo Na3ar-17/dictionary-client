@@ -7,7 +7,6 @@ const MainPage = () => {
   const [open, setOpen] = useState<boolean>(false)
   return (
     <header className={styles.header}>
-      <h1>Dictionary</h1>
       <div className={styles.utils}>
         <FolderPlus className={styles.icon} onClick={() => setOpen(!open)} />
       </div>

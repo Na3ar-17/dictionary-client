@@ -17,7 +17,10 @@ interface IProps {
   title?: string
   description?: string
   buttonText?: string
+  firstInputValue?: string
+  secondInputValue?: string
   inputValue?: string
+  type?: 'folder' | 'words'
 }
 
 const DialogWindow: FC<IProps> = ({
@@ -26,6 +29,9 @@ const DialogWindow: FC<IProps> = ({
   buttonText = 'Create',
   title = 'Create new folder',
   description = 'Do not write a long name',
+  type = 'folder',
+  firstInputValue = 'Name :',
+  secondInputValue = '',
 }) => {
   return (
     <div>
@@ -47,12 +53,22 @@ const DialogWindow: FC<IProps> = ({
             </DialogDescription>
           </DialogHeader>
           <div className={styles.body}>
-            <div className="grid grid-cols-4 items-center gap-4">
+            <div className="grid grid-cols-3 items-center gap-4">
               <label htmlFor="name" className={styles.label}>
-                Name :
+                {firstInputValue}
               </label>
               <input id="name" autoComplete="off" className={styles.input} />
             </div>
+            {type === 'words' ? (
+              <div className="grid grid-cols-3 items-center gap-4">
+                <label htmlFor="name" className={styles.label}>
+                  {secondInputValue}
+                </label>
+                <input id="name" autoComplete="off" className={styles.input} />
+              </div>
+            ) : (
+              ''
+            )}
           </div>
           <DialogFooter className={styles['dialog-footer']}>
             <button className={styles['btn-save']}>{buttonText}</button>

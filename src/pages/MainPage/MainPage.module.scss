@@ -1,0 +1,20 @@
+.header {
+  @apply w-full text-center mt-6;
+
+  h1 {
+    @apply text-3xl font-semibold text-sage;
+  }
+
+  .utils {
+    margin: 0 auto;
+    @apply max-w-[1280px] mt-[50px] mb-[30px];
+
+    .icon {
+      @apply cursor-pointer transition-all text-sage;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

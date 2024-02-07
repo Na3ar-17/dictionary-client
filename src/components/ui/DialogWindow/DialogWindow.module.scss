@@ -1,0 +1,82 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.2s ease;
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.246);
+}
+
+.content {
+  @apply bg-sage w-[450px] rounded-lg p-4 relative;
+  aspect-ratio: 16/8;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  button[type='button'] {
+    display: none;
+  }
+
+  .dialog-header {
+    .dialog-title {
+      @apply text-[18px] font-semibold;
+    }
+
+    .dialog-description {
+      @apply font-medium;
+    }
+  }
+
+  .body {
+    @apply grid gap-4 py-4;
+
+    .label {
+      @apply text-right text-lg font-semibold;
+    }
+
+    .input {
+      @apply bg-background rounded-sm h-[35px] py-1 w-[200px] pl-3 text-lg;
+    }
+  }
+
+  .dialog-footer {
+    @apply flex justify-end;
+    .btn-save {
+      @apply bg-dark-green px-3 rounded-sm cursor-pointer font-semibold text-center transition-all;
+
+      &:active {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.content[data-state='open'] {
+  animation: slideDown 0.2s ease;
+}
+.content[data-state='closed'] {
+  animation: slideUp 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 10%;
+    top: 45%;
+    visibility: visible;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 10%;
+    top: 30%;
+    visibility: hidden;
+  }
+}

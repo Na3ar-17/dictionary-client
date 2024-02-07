@@ -1,0 +1,28 @@
+.item {
+  @apply w-[250px] relative  bg-dark-green p-4 rounded-lg cursor-pointer flex flex-col justify-between;
+  aspect-ratio: 16/10;
+  transition: all 0.2s ease;
+
+  // &:hover {
+  //   transform: translateY(-10px);
+  //   -webkit-box-shadow: 0px 4px 12px -2px rgba(27, 66, 66, 1);
+  //   -moz-box-shadow: 0px 4px 12px -2px rgba(27, 66, 66, 1);
+  //   box-shadow: 0px 4px 12px -2px rgba(27, 66, 66, 1);
+  // }
+
+  .more {
+    @apply absolute right-4 top-2 cursor-pointer;
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  .title {
+    @apply text-xl font-semibold text-start;
+  }
+
+  .items-count {
+    @apply text-sm text-background-2 text-start font-semibold;
+  }
+}

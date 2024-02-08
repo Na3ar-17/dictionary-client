@@ -22,14 +22,14 @@ const Dictionary = () => {
   )
 
   const handleOpenEditWindow = () => {
-    setTitle('Edit file')
+    setTitle('Edit row')
     setButtonText('Save')
     setDescription('Change world or translation')
     setOpen(!open)
   }
 
   const handleOpenCreateWindow = () => {
-    setTitle('Create new file')
+    setTitle('Create new row')
     setButtonText('Save')
     setDescription('Write word and translation')
     setButtonText('Create')
@@ -60,7 +60,7 @@ const Dictionary = () => {
               <th>Translation</th>
             </tr>
             {tableRowsData.map((el) => (
-              <tr>
+              <tr className={styles.tr} key={el.id}>
                 <ContextMenu>
                   <ContextMenuTrigger>
                     <td className={styles.word}>{el.word}</td>
@@ -71,17 +71,17 @@ const Dictionary = () => {
                         onClick={() => handleOpenEditWindow()}
                         className=" hover:opacity-70 transition-all text-background flex justify-between items-center px-1"
                       >
-                        <span className="flex items-center">
+                        <div className="flex items-center">
                           <Pencil size={15} />
                           Edit
-                        </span>
+                        </div>
                         <ContextMenuShortcut>Shift + D</ContextMenuShortcut>
                       </ContextMenuItem>
                       <ContextMenuItem className=" hover:opacity-70 transition-all text-background flex justify-between items-center px-1">
-                        <span className="flex items-center">
+                        <div className="flex items-center">
                           <Trash2 size={15} />
                           Delete
-                        </span>
+                        </div>
                         <ContextMenuShortcut>Shift + R</ContextMenuShortcut>
                       </ContextMenuItem>
                     </div>
@@ -93,16 +93,6 @@ const Dictionary = () => {
           </tbody>
         </table>
       </main>
-      <DialogWindow
-        isOpen={open}
-        setOpen={setOpen}
-        type="words"
-        buttonText={buttonText}
-        description={description}
-        firstInputValue="Word :"
-        secondInputValue="Translation :"
-        title={title}
-      />
     </section>
   )
 }

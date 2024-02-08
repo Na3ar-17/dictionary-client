@@ -10,6 +10,10 @@ import {
 import styles from './DropDownMenuComponent.module.scss'
 import { FC, useState } from 'react'
 import DialogWindow from '../DialogWindow/DialogWindow'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { KEYS } from '../../../api/keys'
+import { updateFolder } from '../../../api/services/folder.cervice'
+import { IFolderData } from '../../../interfaces/folder.iterface'
 
 interface IProps {
   id: number
@@ -17,7 +21,16 @@ interface IProps {
 
 const DropdownMenuComponent: FC<IProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
+  const queruClient = useQueryClient()
+  console.log(id)
 
+  const { mutate: handleUpdateFolder } = useMutation({
+    mutationKey: [KEYS.FOLDER_UPDATE],
+    mutationFn: (params: IFolderData[]) => updateFolder(params, id.toString()),
+    onSuccess: () => {
+      queruClient.invalidateQueries({ queryKey: [KEYS.FOLDER] })
+    },
+  })
   return (
     <>
       <div className="absolute">
@@ -26,6 +39,9 @@ const DropdownMenuComponent: FC<IProps> = ({ id }) => {
           setOpen={setOpen}
           title="Rename folder"
           buttonText="Save"
+          func={handleUpdateFolder}
+          type="edit"
+          id={id}
         />
       </div>
       <div className="absolute right-4">

@@ -1,4 +1,6 @@
+import { X } from 'lucide-react'
 import { Dispatch, FC, SetStateAction } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import {
   Dialog,
   DialogClose,
@@ -9,32 +11,44 @@ import {
   DialogTitle,
 } from '../../../../@/components/ui/dialog'
 import styles from './DialogWindow.module.scss'
-import { X } from 'lucide-react'
+import { TypeFolder } from '../../../types/folder.type'
 
 interface IProps {
   isOpen: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
-  title?: string
-  description?: string
-  buttonText?: string
-  firstInputValue?: string
-  secondInputValue?: string
-  inputValue?: string
-  type?: 'folder' | 'words'
+  type?: 'create' | 'edit'
+  func?: any
+  id?: number
 }
 
 const DialogWindow: FC<IProps> = ({
   isOpen,
   setOpen,
-  buttonText = 'Create',
-  title = 'Create new folder',
-  description = 'Do not write a long name',
-  type = 'folder',
-  firstInputValue = 'Name :',
-  secondInputValue = '',
+  func,
+  type = 'create',
+  id,
 }) => {
+  const { register, handleSubmit, reset } = useForm<TypeFolder>({
+    mode: 'onChange',
+  })
+
+  const onSubmit: SubmitHandler<TypeFolder> = async (values) => {
+    func(values)
+
+    if (type === 'edit') {
+      const newValues = {
+        ...values,
+        id: id,
+      }
+      func(newValues)
+    }
+
+    reset()
+    setOpen(false)
+  }
+
   return (
-    <div>
+    <>
       <div className={`${styles.overlay} ${isOpen ? styles.active : ''}`}></div>
       <Dialog open={isOpen} onOpenChange={setOpen}>
         <DialogContent className={styles.content}>
@@ -46,36 +60,38 @@ const DialogWindow: FC<IProps> = ({
           </DialogClose>
           <DialogHeader className={styles['dialog-header']}>
             <DialogTitle className={styles['dialog-title']}>
-              {title}
+              {type === 'create' ? 'Create new folder' : 'Rename folder'}
             </DialogTitle>
             <DialogDescription className={styles['dialog-description']}>
-              {description}
+              Do not write a long name
             </DialogDescription>
           </DialogHeader>
-          <div className={styles.body}>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <label htmlFor="name" className={styles.label}>
-                {firstInputValue}
-              </label>
-              <input id="name" autoComplete="off" className={styles.input} />
-            </div>
-            {type === 'words' ? (
+          <form
+            className="flex flex-col gap-7"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className={styles.body}>
               <div className="grid grid-cols-3 items-center gap-4">
                 <label htmlFor="name" className={styles.label}>
-                  {secondInputValue}
+                  Name :
                 </label>
-                <input id="name" autoComplete="off" className={styles.input} />
+                <input
+                  {...register('title', { required: true })}
+                  id="name"
+                  autoComplete="off"
+                  className={styles.input}
+                />
               </div>
-            ) : (
-              ''
-            )}
-          </div>
-          <DialogFooter className={styles['dialog-footer']}>
-            <button className={styles['btn-save']}>{buttonText}</button>
-          </DialogFooter>
+            </div>
+            <DialogFooter className={styles['dialog-footer']}>
+              <button type="submit" className={styles['btn-save']}>
+                {type === 'create' ? 'Create' : 'Save'}
+              </button>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   )
 }
 

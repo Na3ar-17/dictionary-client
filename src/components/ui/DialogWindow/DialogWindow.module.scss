@@ -52,7 +52,7 @@
       @apply bg-dark-green px-3 w-28 h-8 rounded-sm cursor-pointer font-semibold text-center transition-all;
 
       &:active {
-        opacity: 0.8;
+        background: rgba(27, 66, 66, 0.797);
       }
     }
   }

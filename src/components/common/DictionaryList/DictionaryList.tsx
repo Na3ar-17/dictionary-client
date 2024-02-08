@@ -1,17 +1,22 @@
-import { dictionaryData } from '../../../data/dictionaryItems.data'
+import { useFolders } from '../../../api/hooks/useFolders'
 import DictionaryItem from '../DictionaryItem/DictionaryItem'
 import styles from './DictionaryList.module.scss'
 const DictionaryList = () => {
+  const { data, isSuccess } = useFolders()
   return (
     <section className={styles['dictionary-list']}>
-      {dictionaryData.map((el) => (
-        <DictionaryItem
-          title={el.title}
-          itemsCount={el.itemsCount}
-          id={el.id}
-          key={el.id}
-        />
-      ))}
+      {isSuccess ? (
+        data.map((el) => (
+          <DictionaryItem
+            title={el.title}
+            itemsCount={el.itemsCount}
+            id={el.id}
+            key={el.id}
+          />
+        ))
+      ) : (
+        <div>Error</div>
+      )}
     </section>
   )
 }

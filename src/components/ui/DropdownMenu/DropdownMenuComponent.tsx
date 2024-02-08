@@ -1,4 +1,6 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FolderPen, MoreHorizontal, Trash2 } from 'lucide-react'
+import { FC, useState } from 'react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,13 +9,14 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '../../../../@/components/ui/dropdown-menu'
-import styles from './DropDownMenuComponent.module.scss'
-import { FC, useState } from 'react'
-import DialogWindow from '../DialogWindow/DialogWindow'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { KEYS } from '../../../api/keys'
-import { updateFolder } from '../../../api/services/folder.cervice'
+import {
+  deleteFolder,
+  updateFolder,
+} from '../../../api/services/folder.cervice'
 import { IFolderData } from '../../../interfaces/folder.iterface'
+import DialogWindow from '../DialogWindow/DialogWindow'
+import styles from './DropDownMenuComponent.module.scss'
 
 interface IProps {
   id: number
@@ -22,7 +25,6 @@ interface IProps {
 const DropdownMenuComponent: FC<IProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
   const queruClient = useQueryClient()
-  console.log(id)
 
   const { mutate: handleUpdateFolder } = useMutation({
     mutationKey: [KEYS.FOLDER_UPDATE],
@@ -31,14 +33,21 @@ const DropdownMenuComponent: FC<IProps> = ({ id }) => {
       queruClient.invalidateQueries({ queryKey: [KEYS.FOLDER] })
     },
   })
+
+  const { mutate: handleDeleteFolder } = useMutation({
+    mutationKey: [KEYS.FOLDER_DELETE],
+    mutationFn: (id: string) => deleteFolder(id),
+    onSuccess: () => {
+      queruClient.invalidateQueries({ queryKey: [KEYS.FOLDER] })
+    },
+  })
+
   return (
     <>
       <div className="absolute">
         <DialogWindow
           isOpen={open}
           setOpen={setOpen}
-          title="Rename folder"
-          buttonText="Save"
           func={handleUpdateFolder}
           type="edit"
           id={id}
@@ -51,7 +60,10 @@ const DropdownMenuComponent: FC<IProps> = ({ id }) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className={styles.content}>
             <DropdownMenuGroup className="w-[160px] cursor-pointer flex justify-center flex-col gap-y-1">
-              <DropdownMenuItem className={styles.item}>
+              <DropdownMenuItem
+                onClick={() => handleDeleteFolder(id.toString())}
+                className={styles.item}
+              >
                 <span>
                   <Trash2 size={17} className={styles.icon} />
                   Delete

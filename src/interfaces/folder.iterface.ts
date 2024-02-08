@@ -6,5 +6,5 @@ export interface IFolder {
 
 export interface IFolderData {
   id?: number
-  title: string
+  title?: string
 }

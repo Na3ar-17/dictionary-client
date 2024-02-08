@@ -20,3 +20,8 @@ export const updateFolder = async (
   const { data } = await axios.put(`/folder/update/${id}`, params)
   return data
 }
+
+export const deleteFolder = async (id: string): Promise<IFolder[]> => {
+  const { data } = await axios.delete(`/folder/delete/${id}`)
+  return data
+}

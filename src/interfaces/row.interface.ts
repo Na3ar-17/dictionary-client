@@ -1,12 +1,12 @@
 export interface IRow {
-  id: number
+  id: string
   word: string
   translation: string
-  folderId: number
+  folderId: string
 }
 
 export interface IRowData {
   word: string
   translation: string
-  folderId: number
+  folderId: string
 }

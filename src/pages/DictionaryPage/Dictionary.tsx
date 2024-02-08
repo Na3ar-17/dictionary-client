@@ -12,13 +12,38 @@ import styles from './Dictionary.module.scss'
 import SheetMenu from '../../components/ui/SheetMenu/SheetMenu'
 import { useState } from 'react'
 import { useRow } from '../../api/hooks/useRow'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { KEYS } from '../../api/keys'
+import { deleteRow, updateRow } from '../../api/services/row.service'
+import { IRowData } from '../../interfaces/row.interface'
 
 const Dictionary = () => {
   const [openSheet, setOpenSheet] = useState<boolean>(false)
   const [type, setType] = useState<'create' | 'edit'>('create')
   const { folderId } = useParams()
+  const [rowId, setRowId] = useState<string>('')
+  const queryClient = useQueryClient()
 
-  const { data, isSuccess } = useRow(folderId !== undefined ? folderId : '0')
+  const { data, isSuccess, refetch } = useRow(
+    folderId !== undefined ? folderId : '0'
+  )
+
+  const { mutate: handleDeleteRow } = useMutation({
+    mutationKey: [KEYS.ROW_DELETE],
+    mutationFn: ({ folderId, rowId }: { folderId: string; rowId: string }) =>
+      deleteRow(folderId, rowId),
+    onSuccess: () => {
+      refetch()
+    },
+  })
+
+  const { mutate: handleUpdateRow } = useMutation({
+    mutationKey: [KEYS.ROW_UPDATE],
+    mutationFn: (params: IRowData) => updateRow(params),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [KEYS.ROW] })
+    },
+  })
 
   return (
     <section className={styles.container}>
@@ -60,6 +85,7 @@ const Dictionary = () => {
                           onClick={() => {
                             setOpenSheet(!openSheet)
                             setType('edit')
+                            setRowId(el.id)
                           }}
                           className=" hover:opacity-70 transition-all text-background flex justify-between items-center px-1"
                         >
@@ -69,7 +95,15 @@ const Dictionary = () => {
                           </div>
                           <ContextMenuShortcut>Shift + D</ContextMenuShortcut>
                         </ContextMenuItem>
-                        <ContextMenuItem className=" hover:opacity-70 transition-all text-background flex justify-between items-center px-1">
+                        <ContextMenuItem
+                          onClick={() => {
+                            handleDeleteRow({
+                              folderId: folderId !== undefined ? folderId : '0',
+                              rowId: el.id.toString(),
+                            })
+                          }}
+                          className=" hover:opacity-70 transition-all text-background flex justify-between items-center px-1"
+                        >
                           <div className="flex items-center">
                             <Trash2 size={15} />
                             Delete
@@ -88,7 +122,14 @@ const Dictionary = () => {
           </tbody>
         </table>
       </main>
-      <SheetMenu type={type} open={openSheet} setOpen={setOpenSheet} />
+      <SheetMenu
+        folderId={folderId !== undefined ? folderId : '0'}
+        type={type}
+        open={openSheet}
+        setOpen={setOpenSheet}
+        mutation={handleUpdateRow}
+        rowId={rowId}
+      />
     </section>
   )
 }

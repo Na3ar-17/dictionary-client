@@ -94,7 +94,7 @@ const SheetMenu: FC<IProps> = ({
               <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                 <div className={styles['input-container']}>
                   <label className={styles.label} htmlFor="word">
-                    Word :
+                    Word or Letter :
                     <input
                       {...register('word')}
                       className={styles.input}

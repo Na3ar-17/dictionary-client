@@ -1,0 +1,84 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.2s ease;
+}
+
+.active {
+  background-color: rgba(0, 0, 0, 0.246);
+}
+
+.sheet {
+  @apply bg-sage w-full h-[300px] px-10 py-8;
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  opacity: 0;
+  visibility: hidden;
+  transition: top 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+
+  button[type='button'] {
+    display: none;
+  }
+
+  .sheet-body {
+    .create {
+      .form {
+        @apply max-w-[200px];
+        .input-container {
+          .label {
+            @apply grid grid-cols-2 mt-3;
+            .input {
+              @apply w-52 h-8 bg-background text-[18px] rounded-md px-2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.sheet[data-state='open'] {
+  top: 0%;
+  opacity: 1;
+  visibility: visible;
+  animation: slideDown 0.4s ease;
+}
+
+.sheet[data-state='closed'] {
+  top: -100%;
+  opacity: 0;
+  visibility: hidden;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    top: -100%;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    top: 0%;
+    visibility: visible;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    top: 0%;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    top: -100%;
+  }
+}

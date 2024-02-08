@@ -14,7 +14,7 @@ const DictionaryItem: FC<IProps> = ({ title, itemsCount, id }) => {
     <div className={styles.item}>
       <DropdownMenuComponent id={id} />
       <p className={styles.title}>
-        <Link to={'/dictionary'}>{title}</Link>
+        <Link to={`/dictionary/${id}`}>{title}</Link>
       </p>
       <p className={styles['items-count']}>
         <span>items:</span> {itemsCount}

@@ -7,7 +7,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/dictionary" element={<Dictionary />} />
+        <Route path="/dictionary/:folderId" element={<Dictionary />} />
       </Routes>
     </>
   )

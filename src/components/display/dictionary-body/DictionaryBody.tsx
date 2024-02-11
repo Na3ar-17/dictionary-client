@@ -4,6 +4,7 @@ import { ArrowLeftToLine, FilePlus } from 'lucide-react'
 import { useParams, Link } from 'react-router-dom'
 import SheetMenu from '../../ui/sheet-menu/SheetMenu'
 import Table from './table/Table'
+import { useGetOneFolder } from './utils/useGetOneFolder'
 
 const DictionaryBody = () => {
   const [openSheet, setOpenSheet] = useState<boolean>(false)
@@ -12,6 +13,8 @@ const DictionaryBody = () => {
 
   const { folderId } = useParams()
 
+  const { data } = useGetOneFolder(folderId ? folderId : '')
+
   return (
     <section className={styles.container}>
       <header className={styles.header}>
@@ -19,7 +22,7 @@ const DictionaryBody = () => {
           <Link to="/">
             <ArrowLeftToLine className={styles['icon-back']} />
           </Link>
-          <h2>Programming Terms</h2>
+          <h2>{data?.title}</h2>
         </div>
         <div className={styles.utils}>
           <FilePlus

@@ -33,7 +33,7 @@ const Table: FC<IProps> = ({
     <table className={styles.table}>
       <tbody>
         <tr>
-          <th>Word</th>
+          <th>Word & Letter</th>
           <th>Translation</th>
         </tr>
         {isSuccess ? (

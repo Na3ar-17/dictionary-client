@@ -1,5 +1,6 @@
 export const KEYS = {
   FOLDER: 'folder',
+  FOLDER_GET_ONE: 'FOLDER-get-one',
   FOLDER_CREATE: 'folder-create',
   FOLDER_UPDATE: 'folder-update',
   FOLDER_DELETE: 'folder-delete',

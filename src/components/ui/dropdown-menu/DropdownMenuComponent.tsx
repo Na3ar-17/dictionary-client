@@ -1,4 +1,3 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { FolderPen, MoreHorizontal, Trash2 } from 'lucide-react'
 import { FC, useState } from 'react'
 import {
@@ -9,38 +8,22 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '../../../../@/components/ui/dropdown-menu'
-import { KEYS } from '../../../api/keys'
-import {
-  deleteFolder,
-  updateFolder,
-} from '../../../api/services/folder.cervice'
-import { IFolderData } from '../../../interfaces/folder.iterface'
 import DialogWindow from '../dialog-window/DialogWindow'
 import styles from './DropDownMenuComponent.module.scss'
+import AlertWindow from '../alert-dialog-window/AlertWindow'
+import { useDeleteFolder } from './utils/useDeleteFolder'
+import { useUpdateFolder } from './utils/useUpdateFolder'
 
 interface IProps {
-  id: number
+  id: string
 }
 
 const DropdownMenuComponent: FC<IProps> = ({ id }) => {
   const [open, setOpen] = useState<boolean>(false)
-  const queruClient = useQueryClient()
+  const [alertOpen, setAlertOpen] = useState<boolean>(false)
 
-  const { mutate: handleUpdateFolder } = useMutation({
-    mutationKey: [KEYS.FOLDER_UPDATE],
-    mutationFn: (params: IFolderData[]) => updateFolder(params, id.toString()),
-    onSuccess: () => {
-      queruClient.invalidateQueries({ queryKey: [KEYS.FOLDER] })
-    },
-  })
-
-  const { mutate: handleDeleteFolder } = useMutation({
-    mutationKey: [KEYS.FOLDER_DELETE],
-    mutationFn: (id: string) => deleteFolder(id),
-    onSuccess: () => {
-      queruClient.invalidateQueries({ queryKey: [KEYS.FOLDER] })
-    },
-  })
+  const { handleDeleteFolder } = useDeleteFolder(id)
+  const { handleUpdateFolder } = useUpdateFolder(id)
 
   return (
     <>
@@ -61,7 +44,9 @@ const DropdownMenuComponent: FC<IProps> = ({ id }) => {
           <DropdownMenuContent className={styles.content}>
             <DropdownMenuGroup className="w-[160px] cursor-pointer flex justify-center flex-col gap-y-1">
               <DropdownMenuItem
-                onClick={() => handleDeleteFolder(id.toString())}
+                onClick={() => {
+                  setAlertOpen(!alertOpen)
+                }}
                 className={styles.item}
               >
                 <span>
@@ -91,6 +76,14 @@ const DropdownMenuComponent: FC<IProps> = ({ id }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+      <AlertWindow
+        open={alertOpen}
+        description={
+          'This action cannot be undone. This will permanently delete this folder'
+        }
+        onClickFunction={handleDeleteFolder}
+        setOpen={setAlertOpen}
+      />
     </>
   )
 }

@@ -18,7 +18,7 @@ interface IProps {
   setOpen: Dispatch<SetStateAction<boolean>>
   type?: 'create' | 'edit'
   func?: any
-  id?: number
+  id?: string
 }
 
 const DialogWindow: FC<IProps> = ({

@@ -6,6 +6,11 @@ export const getFolders = async (): Promise<IFolder[]> => {
   return data
 }
 
+export const getOneFolder = async (folderId: string): Promise<IFolder> => {
+  const { data } = await axios.get(`/folder/get-one/${folderId}`)
+  return data
+}
+
 export const createFolder = async (
   params: IFolderData[]
 ): Promise<IFolder[]> => {

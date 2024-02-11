@@ -15,7 +15,7 @@ import {
   updateFolder,
 } from '../../../api/services/folder.cervice'
 import { IFolderData } from '../../../interfaces/folder.iterface'
-import DialogWindow from '../DialogWindow/DialogWindow'
+import DialogWindow from '../dialog-window/DialogWindow'
 import styles from './DropDownMenuComponent.module.scss'
 
 interface IProps {

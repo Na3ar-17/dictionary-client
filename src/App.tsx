@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
-import MainPage from './pages/MainPage/MainPage'
-import Dictionary from './pages/DictionaryPage/Dictionary'
+import MainPage from './pages/main-page/MainPage'
+import Dictionary from './pages/dictionary-page/Dictionary'
 
 function App() {
   return (

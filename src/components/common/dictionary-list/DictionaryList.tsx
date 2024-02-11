@@ -1,5 +1,5 @@
 import { useFolders } from '../../../api/hooks/useFolders'
-import DictionaryItem from '../DictionaryItem/DictionaryItem'
+import DictionaryItem from '../dictionary-item/DictionaryItem'
 import styles from './DictionaryList.module.scss'
 const DictionaryList = () => {
   const { data, isSuccess } = useFolders()

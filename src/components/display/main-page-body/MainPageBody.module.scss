@@ -1,0 +1,16 @@
+.header {
+  @apply w-full  mt-6;
+
+  .utils {
+    margin: 0 auto;
+    @apply max-w-[1280px] mt-[50px] mb-[30px];
+
+    .icon {
+      @apply cursor-pointer transition-all text-sage;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

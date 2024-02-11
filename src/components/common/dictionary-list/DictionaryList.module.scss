@@ -1,0 +1,16 @@
+.dictionary-list {
+  @apply mt-32 w-full min-h-full grid grid-cols-4 gap-y-10  place-items-center max-w-[90%];
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 1170px) {
+  .dictionary-list {
+    @apply grid-cols-3;
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .dictionary-list {
+    @apply grid-cols-2;
+  }
+}

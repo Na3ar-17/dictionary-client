@@ -6,6 +6,14 @@ export const getRows = async (folderId: string): Promise<IRow[]> => {
   return data
 }
 
+export const getOneRow = async (
+  folderId: string,
+  rowId: string
+): Promise<IRow> => {
+  const { data } = await axios.get(`/row/get-one/${folderId}/${rowId}`)
+  return data
+}
+
 export const createRow = async (params: IRowData): Promise<IRow[]> => {
   const { data } = await axios.post('/row/create', params)
   return data

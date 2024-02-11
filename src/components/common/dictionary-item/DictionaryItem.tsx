@@ -1,5 +1,5 @@
 import styles from './DictionaryItem.module.scss'
-import DropdownMenuComponent from '../../ui/DropdownMenu/DropdownMenuComponent'
+import DropdownMenuComponent from '../../ui/dropdown-menu/DropdownMenuComponent'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 

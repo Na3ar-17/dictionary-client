@@ -15,6 +15,10 @@ interface IProps {
   onSubmit: SubmitHandler<TypeRow>
   folderId: string
   rowId: string
+  firstInput: string
+  secondInput: string
+  setFirstInput: any
+  setSecondInput: any
 }
 
 const Form: FC<IProps> = ({
@@ -24,11 +28,12 @@ const Form: FC<IProps> = ({
   onSubmit,
   folderId,
   rowId,
+  firstInput,
+  secondInput,
+  setFirstInput,
+  setSecondInput,
 }) => {
   const { data } = useGetOneRow(folderId, rowId)
-
-  const [firstInput, setFirstInput] = useState('')
-  const [secondInput, setSecondInput] = useState('')
 
   useLayoutEffect(() => {
     if (type === 'create') {
@@ -39,11 +44,6 @@ const Form: FC<IProps> = ({
       setSecondInput(data ? data.translation : '')
     }
   }, [data])
-
-  useEffect(() => {
-    setFirstInput('')
-    setSecondInput('')
-  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -76,7 +76,7 @@ const Form: FC<IProps> = ({
         </label>
       </div>
       <button
-        className="w-32 bg-dark-green text-center h-8 rounded-sm font-semibold mt-8 active:scale-105 transition-all"
+        className="w-32 bg-card-background text-center h-8 rounded-sm font-semibold mt-8 active:scale-105 transition-all"
         type="submit"
       >
         {type === 'create' ? 'Create' : 'Save changes'}

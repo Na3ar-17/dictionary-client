@@ -4,7 +4,7 @@
     @apply flex gap-5 items-start max-w-[1200px] mt-5 flex-col;
 
     .icon-back {
-      @apply text-sage transition-all;
+      @apply text-icons transition-all;
 
       &:hover {
         transform: scale(1.09);
@@ -14,13 +14,13 @@
       }
     }
     h2 {
-      @apply text-xl text-start text-2xl;
+      @apply text-start text-2xl;
     }
   }
 
   .utils {
     .icon {
-      @apply text-sage cursor-pointer transition-all;
+      @apply text-icons cursor-pointer transition-all;
 
       &:active {
         transform: scale(1.08);
@@ -30,44 +30,6 @@
 
   .body {
     margin: 0 auto;
-
     @apply max-w-[1200px];
-    .table {
-      @apply w-full mt-8 relative mb-[100px];
-      border-top: 2px solid #5c8374;
-
-      tr {
-        @apply min-h-11 grid grid-cols-2 transition-all;
-        border-bottom: 2px solid #5c8374;
-
-        &:hover:not(&:first-child) {
-          @apply bg-[#9baea71d] cursor-pointer;
-        }
-
-        &:first-child {
-          @apply h-12;
-          line-height: 48px;
-        }
-
-        th {
-          @apply text-xl text-text;
-          &:first-child {
-            border-right: 2px solid #5c8374;
-          }
-        }
-
-        td {
-          @apply text-lg text-start px-4 flex items-center relative min-h-[43px];
-          &:first-child {
-            border-right: 2px solid #5c8374;
-          }
-
-          .icon {
-            position: absolute;
-            right: 0;
-          }
-        }
-      }
-    }
   }
 }

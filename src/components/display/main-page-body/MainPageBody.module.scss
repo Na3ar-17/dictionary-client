@@ -6,7 +6,7 @@
     @apply max-w-[1280px] mt-[50px] mb-[30px];
 
     .icon {
-      @apply cursor-pointer transition-all text-sage;
+      @apply cursor-pointer transition-all text-icons;
 
       &:hover {
         transform: scale(1.1);

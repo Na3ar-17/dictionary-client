@@ -12,7 +12,7 @@ interface IProps {
 const DictionaryItem: FC<IProps> = ({ title, itemsCount, id }) => {
   return (
     <div className={styles.item}>
-      <DropdownMenuComponent id={id} />
+      <DropdownMenuComponent id={id.toString()} />
       <p className={styles.title}>
         <Link to={`/dictionary/${id}`}>{title}</Link>
       </p>

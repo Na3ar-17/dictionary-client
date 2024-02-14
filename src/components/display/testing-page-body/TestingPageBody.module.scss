@@ -1,0 +1,55 @@
+.container {
+  @apply flex items-center justify-center;
+
+  .block {
+    @apply p-2 w-[620px] h-[310px] rounded-md bg-modals mt-[100px] flex flex-col relative;
+    .underline {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      transition: all;
+      border-radius: 5px;
+      @apply bg-card-background;
+    }
+    .body {
+      @apply flex flex-col items-center gap-8 py-2;
+      .input {
+        @apply text-start w-[300px] h-10 bg-input text-[18px] rounded-md px-2;
+      }
+    }
+
+    .footer {
+      @apply mt-14;
+
+      .translation {
+        @apply text-[#b0a8a8];
+      }
+
+      .mistakes {
+        @apply absolute bottom-4 text-[#7d7777];
+      }
+    }
+  }
+}
+
+.button {
+  @apply w-[130px] h-[35px] bg-card-background text-xl rounded-lg cursor-pointer active:scale-90 transition-all;
+}
+
+.active {
+  animation: underline 3s forwards;
+}
+
+@keyframes underline {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+
+  100% {
+    width: 100%;
+  }
+}

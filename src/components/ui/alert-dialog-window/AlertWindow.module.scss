@@ -1,5 +1,5 @@
 .content {
-  @apply max-w-[400px] h-[190px] bg-sage fixed rounded-xl px-8 py-4;
+  @apply max-w-[400px] h-[190px] bg-modals fixed rounded-xl px-8 py-4;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -7,12 +7,20 @@
   .footer {
     @apply flex justify-end gap-2;
     .btn-cancel {
-      @apply w-[60px] text-center border-sage cursor-pointer;
+      @apply w-[60px] text-center border-b-card-background cursor-pointer;
       border: 2px solid;
+
+      &:hover {
+        opacity: 0.6;
+      }
     }
 
     .btn-continue {
-      @apply w-[120px] text-center bg-background cursor-pointer;
+      @apply w-[120px] transition-all text-center bg-[#7d0707] cursor-pointer;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 }

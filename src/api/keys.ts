@@ -6,6 +6,7 @@ export const KEYS = {
   FOLDER_DELETE: 'folder-delete',
   ROW: 'row',
   ROW_GET_ONE: 'row-get-one',
+  ROW_GET_RANDOM: 'row-get-random',
   ROW_CREATE: 'row-create',
   ROW_DELETE: 'row-delete',
   ROW_UPDATE: 'row-update',

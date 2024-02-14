@@ -1,8 +1,8 @@
 .content {
-  @apply rounded-md px-[3px] py-[4px] bg-sage;
+  @apply rounded-md px-[3px] py-[4px] bg-dropdown-menu-bg;
 
   .item {
-    @apply transition-all text-background flex justify-between items-center px-1;
+    @apply transition-all text-text flex justify-between items-center px-1;
     span {
       @apply flex items-center;
     }

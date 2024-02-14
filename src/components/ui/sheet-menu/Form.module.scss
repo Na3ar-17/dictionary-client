@@ -4,7 +4,7 @@
     .label {
       @apply grid grid-cols-2 mt-3;
       .input {
-        @apply w-52 h-8 bg-background text-[18px] rounded-md px-2;
+        @apply w-52 h-8 bg-input text-[18px] rounded-md px-2;
       }
     }
   }

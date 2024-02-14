@@ -1,5 +1,5 @@
 .item {
-  @apply w-[250px] relative  bg-dark-green p-4 rounded-lg cursor-pointer flex flex-col justify-between;
+  @apply w-[250px] relative bg-card-background p-4 rounded-lg cursor-pointer flex flex-col justify-between;
   aspect-ratio: 16/10;
   transition: all 0.2s ease;
 
@@ -30,6 +30,6 @@
   }
 
   .items-count {
-    @apply text-sm text-background-2 text-start font-semibold;
+    @apply text-sm text-text text-start font-semibold;
   }
 }

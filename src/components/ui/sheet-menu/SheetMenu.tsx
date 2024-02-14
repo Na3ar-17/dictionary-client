@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import {
   Sheet,
   SheetContent,
@@ -36,25 +36,38 @@ const SheetMenu: FC<IProps> = ({
     mode: 'onChange',
   })
 
+  const [firstInput, setFirstInput] = useState('')
+  const [secondInput, setSecondInput] = useState('')
+
   const onSubmit: SubmitHandler<TypeRow> = async (values) => {
+    let word = values.word.charAt(0).toUpperCase() + values.word.slice(1)
+    let translation =
+      values.translation.charAt(0).toUpperCase() + values.translation.slice(1)
+
+    const newValues = {
+      word,
+      translation,
+    }
+
     if (type === 'create') {
-      const newParams = {
-        ...values,
+      const params = {
+        ...newValues,
         folderId,
       }
-      handleCreateRow(newParams)
-      reset()
-      setOpen(!open)
+      handleCreateRow(params)
     } else {
-      const newParams = {
-        ...values,
+      const params = {
+        ...newValues,
         folderId,
         rowId,
       }
-      handleUpdateRow(newParams)
-      reset()
-      setOpen(!open)
+      handleUpdateRow(params)
     }
+
+    setOpen(!open)
+    setFirstInput('')
+    setSecondInput('')
+    reset()
   }
   return (
     <>
@@ -79,6 +92,10 @@ const SheetMenu: FC<IProps> = ({
               register={register}
               folderId={folderId}
               rowId={rowId ? rowId : ''}
+              firstInput={firstInput}
+              secondInput={secondInput}
+              setFirstInput={setFirstInput}
+              setSecondInput={setSecondInput}
             />
           </div>
         </SheetContent>

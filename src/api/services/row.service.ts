@@ -14,6 +14,11 @@ export const getOneRow = async (
   return data
 }
 
+export const getRandomRow = async (folderId: string): Promise<IRow> => {
+  const { data } = await axios.get(`/row/get-random/${folderId}/`)
+  return data
+}
+
 export const createRow = async (params: IRowData): Promise<IRow[]> => {
   const { data } = await axios.post('/row/create', params)
   return data

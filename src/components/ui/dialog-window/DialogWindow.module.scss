@@ -13,7 +13,7 @@
 }
 
 .content {
-  @apply bg-sage max-w-[450px] rounded-lg p-4 relative;
+  @apply bg-modals max-w-[450px] rounded-lg p-4 relative;
   aspect-ratio: 16/9;
   position: fixed;
   top: 50%;
@@ -42,14 +42,14 @@
     }
 
     .input {
-      @apply bg-background rounded-sm h-[35px] py-1 w-[200px] pl-3 text-lg;
+      @apply bg-input rounded-sm h-[35px] py-1 w-[200px] pl-3 text-lg;
     }
   }
 
   .dialog-footer {
     @apply flex justify-end;
     .btn-save {
-      @apply bg-dark-green px-3 w-28 h-8 rounded-sm cursor-pointer font-semibold text-center transition-all;
+      @apply bg-card-background px-3 w-28 h-8 rounded-sm cursor-pointer font-semibold text-center transition-all;
 
       &:active {
         background: rgba(27, 66, 66, 0.797);

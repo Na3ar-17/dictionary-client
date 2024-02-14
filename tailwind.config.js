@@ -34,10 +34,14 @@ module.exports = {
     },
     colors: {
       text: '#fff',
-      background: '#092635',
-      'background-2': '#9EC8B9',
-      'dark-green': '#1B4242',
-      sage: '#5C8374',
+      'primary-background': '#0b0c0d',
+      'card-background': '#0B666A',
+      'modal-background': '#3657ad',
+      'dropdown-menu-bg': '#383b42',
+      /* */
+      icons: '#b2c5af',
+      modals: '#222222',
+      input: '#4a4a4a',
     },
   },
   plugins: [require('tailwindcss-animate')],

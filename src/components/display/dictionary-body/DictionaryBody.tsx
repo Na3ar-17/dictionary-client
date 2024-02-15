@@ -7,7 +7,7 @@ import Table from './table/Table'
 import { useGetOneFolder } from './utils/useGetOneFolder'
 
 const DictionaryBody = () => {
-  const [openSheet, setOpenSheet] = useState<boolean>(false)
+  const [isOpenSheet, setOpenSheet] = useState<boolean>(false)
   const [type, setType] = useState<'create' | 'edit'>('create')
   const [rowId, setRowId] = useState<string>('')
 
@@ -27,7 +27,7 @@ const DictionaryBody = () => {
         <div className={styles.utils}>
           <FilePlus
             onClick={() => {
-              setOpenSheet(!openSheet)
+              setOpenSheet(!isOpenSheet)
               setType('create')
             }}
             size={30}
@@ -37,17 +37,17 @@ const DictionaryBody = () => {
       </header>
       <main className={styles.body}>
         <Table
-          folderId={folderId ? folderId : ''}
-          openSheet={openSheet}
+          folderId={folderId || '0'}
+          isOpenSheet={isOpenSheet}
           setOpenSheet={setOpenSheet}
           setRowId={setRowId}
           setType={setType}
         />
       </main>
       <SheetMenu
-        folderId={folderId !== undefined ? folderId : '0'}
+        folderId={folderId || '0'}
         type={type}
-        open={openSheet}
+        open={isOpenSheet}
         setOpen={setOpenSheet}
         rowId={rowId}
       />

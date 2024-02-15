@@ -1,23 +1,16 @@
-import { FC, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import styles from './Table.module.scss'
-import {
-  ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
-} from '@radix-ui/react-context-menu'
-import { BookCheck, Eye, EyeOff, Pencil, Trash2 } from 'lucide-react'
-import { ContextMenuShortcut } from '../../../../../@/components/ui/context-menu'
-import { useDeleteRow } from '../../../ui/sheet-menu/utils/useDeleteRow'
+import { BookCheck, Eye, EyeOff } from 'lucide-react'
 import { useRow } from '../../../../api/hooks/useRow'
 import { Link } from 'react-router-dom'
+import Row from './Row/Row'
 
 interface IProps {
-  setOpenSheet: any
-  setType: any
-  setRowId: any
+  setOpenSheet: Dispatch<SetStateAction<boolean>>
+  setType: Dispatch<SetStateAction<'edit' | 'create'>>
+  setRowId: Dispatch<SetStateAction<string>>
   folderId: string
-  openSheet: boolean
+  isOpenSheet: boolean
 }
 
 const Table: FC<IProps> = ({
@@ -25,9 +18,8 @@ const Table: FC<IProps> = ({
   setRowId,
   setType,
   folderId,
-  openSheet,
+  isOpenSheet,
 }) => {
-  const { handleDeleteRow } = useDeleteRow()
   const { data, isSuccess } = useRow(folderId ? folderId : '0')
   const [isHidden, setIsHidden] = useState<boolean>(false)
 
@@ -60,59 +52,19 @@ const Table: FC<IProps> = ({
           </tr>
           {isSuccess ? (
             data.map((el) => (
-              <tr className={styles.tr} key={el.id}>
-                <td>
-                  <ContextMenu>
-                    <ContextMenuTrigger className="w-full">
-                      {el.word}
-                    </ContextMenuTrigger>
-                    <ContextMenuContent className="rounded-md px-[3px] py-[4px] bg-modals z-40">
-                      <div className="w-[160px] cursor-pointer flex justify-center flex-col gap-y-1">
-                        <ContextMenuItem
-                          onClick={() => {
-                            setOpenSheet(!openSheet)
-                            setType('edit')
-                            setRowId(el.id)
-                          }}
-                          className=" hover:opacity-70 transition-all text-background flex justify-between items-center px-1"
-                        >
-                          <div className="flex items-center">
-                            <Pencil size={15} />
-                            Edit
-                          </div>
-                          <ContextMenuShortcut>Shift + D</ContextMenuShortcut>
-                        </ContextMenuItem>
-                        <ContextMenuItem
-                          onClick={() => {
-                            handleDeleteRow({
-                              folderId: folderId !== undefined ? folderId : '0',
-                              rowId: el.id.toString(),
-                            })
-                          }}
-                          className=" hover:opacity-70 transition-all text-background flex justify-between items-center px-1"
-                        >
-                          <div className="flex items-center">
-                            <Trash2 size={15} />
-                            Delete
-                          </div>
-                          <ContextMenuShortcut>Shift + R</ContextMenuShortcut>
-                        </ContextMenuItem>
-                      </div>
-                    </ContextMenuContent>
-                  </ContextMenu>
-                </td>
-                <td
-                  className={`${styles.translation} ${
-                    isHidden ? styles.hidden : ''
-                  }`}
-                >
-                  {el.translation}
-                </td>
-              </tr>
+              <Row
+                el={el}
+                folderId={folderId}
+                isHidden={isHidden}
+                isOpenSheet={isOpenSheet}
+                setOpenSheet={setOpenSheet}
+                setRowId={setRowId}
+                setType={setType}
+              />
             ))
           ) : (
             <tr>
-              <td>error</td>
+              <td>Error</td>
             </tr>
           )}
         </tbody>

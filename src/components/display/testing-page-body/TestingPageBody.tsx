@@ -24,7 +24,6 @@ const TestingPageBody: FC<IProps> = ({ folderId }) => {
       if (input.toLowerCase() !== data?.translation.toLowerCase()) {
         setMistakes((prev) => prev + 1)
       }
-
       setInput('')
       refetch()
     }
@@ -42,6 +41,7 @@ const TestingPageBody: FC<IProps> = ({ folderId }) => {
       refetch()
     }, 3000)
   }
+
   return (
     <section className={styles.container}>
       <Link to={`/dictionary/${folderId}`}>

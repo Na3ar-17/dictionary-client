@@ -1,0 +1,45 @@
+tr {
+  @apply min-h-11 grid grid-cols-2 transition-all;
+  border-bottom: 2px solid #cbcbd8;
+
+  &:hover:not(&:first-child) {
+    @apply bg-[#9baea71d] cursor-pointer;
+    .translation {
+      opacity: 1;
+    }
+  }
+
+  &:first-child {
+    @apply h-12;
+    line-height: 48px;
+  }
+
+  th {
+    @apply text-xl text-text;
+    &:first-child {
+      border-right: 2px solid #cbcbd8;
+    }
+  }
+
+  td {
+    @apply text-lg text-start  px-4 flex items-center relative min-h-[43px];
+    word-wrap: break-word;
+    font-family: 'Open Sans', sans-serif;
+    font-style: italic;
+    &:first-child {
+      border-right: 2px solid #cbcbd8;
+    }
+
+    .icon {
+      @apply text-icons absolute right-0;
+    }
+  }
+
+  .translation {
+    @apply transition-all;
+  }
+
+  .hidden {
+    opacity: 0;
+  }
+}

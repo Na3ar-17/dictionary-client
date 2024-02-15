@@ -34,20 +34,6 @@
         }
       }
 
-      td {
-        @apply text-lg text-start  px-4 flex items-center relative min-h-[43px];
-        word-wrap: break-word;
-        font-family: 'Open Sans', sans-serif;
-        font-style: italic;
-        &:first-child {
-          border-right: 2px solid #cbcbd8;
-        }
-
-        .icon {
-          @apply text-icons absolute right-0;
-        }
-      }
-
       .translation {
         @apply transition-all;
       }

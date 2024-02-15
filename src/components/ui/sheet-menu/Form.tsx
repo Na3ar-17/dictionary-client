@@ -47,40 +47,43 @@ const Form: FC<IProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <div className={styles['input-container']}>
-        <label className={styles.label} htmlFor="word">
-          Word or Letter :
-          <input
-            {...register('word')}
-            className={styles.input}
-            type="text"
-            id="word"
-            autoComplete="off"
-            value={firstInput}
-            onChange={(e) => setFirstInput(e.target.value)}
-          />
-        </label>
+      <div className={styles.content}>
+        <div className={styles['inputs']}>
+          <div className={styles['input-container']}>
+            <label className={styles.label} htmlFor="word">
+              {/* Word or Letter : */}
+              <input
+                {...register('word')}
+                className={styles.input}
+                type="text"
+                id="word"
+                autoComplete="off"
+                value={firstInput}
+                placeholder="Word or letter"
+                onChange={(e) => setFirstInput(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={styles['input-container']}>
+            <label className={styles.label} htmlFor="translation">
+              {/* Translation : */}
+              <input
+                {...register('translation')}
+                className={styles.input}
+                type="text"
+                id="translation"
+                autoComplete="off"
+                value={secondInput}
+                placeholder="Translation"
+                onChange={(e) => setSecondInput(e.target.value)}
+              />
+            </label>
+          </div>
+        </div>
+        <button className={styles.button} type="submit">
+          {type === 'create' ? 'Create' : 'Save changes'}
+        </button>
       </div>
-      <div className={styles['input-container']}>
-        <label className={styles.label} htmlFor="translation">
-          Translation :
-          <input
-            {...register('translation')}
-            className={styles.input}
-            type="text"
-            id="translation"
-            autoComplete="off"
-            value={secondInput}
-            onChange={(e) => setSecondInput(e.target.value)}
-          />
-        </label>
-      </div>
-      <button
-        className="w-32 bg-card-background text-center h-8 rounded-sm font-semibold mt-8 active:scale-105 transition-all"
-        type="submit"
-      >
-        {type === 'create' ? 'Create' : 'Save changes'}
-      </button>
     </form>
   )
 }

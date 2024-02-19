@@ -12,7 +12,21 @@
   z-index: -1;
   width: 100%;
   height: 100vh;
-
+  background-image: linear-gradient(
+    to bottom,
+    #0b0c0d,
+    #0b0c0d,
+    #0b0c0d,
+    #0b0c0d,
+    #0b0c0d,
+    #0c0f12,
+    #0d1216,
+    #0e1519,
+    #0e1b1f,
+    #0b2024,
+    #072628,
+    #072c29
+  );
   .circles {
     position: absolute;
     top: 0;

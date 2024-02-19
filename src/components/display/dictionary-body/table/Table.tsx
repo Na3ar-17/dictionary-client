@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react'
 import styles from './Table.module.scss'
-import { BookCheck, Eye, EyeOff } from 'lucide-react'
+import { BarChart3, BookCheck, Eye, EyeOff } from 'lucide-react'
 import { useRow } from '../../../../api/hooks/useRow'
 import { Link } from 'react-router-dom'
 import Row from './Row/Row'
@@ -28,6 +28,9 @@ const Table: FC<IProps> = ({
       <div className={styles.utils}>
         <Link to={`/testing/${folderId}`}>
           <BookCheck className="absolute left-[-90px] text-icons" />
+        </Link>
+        <Link to={`/statistics/${folderId}`}>
+          <BarChart3 className="absolute left-[-130px] text-icons" />
         </Link>
 
         {isHidden ? (

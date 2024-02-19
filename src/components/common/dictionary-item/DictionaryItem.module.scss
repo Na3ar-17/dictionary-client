@@ -3,6 +3,8 @@
   aspect-ratio: 16/10;
   transition: all 0.2s ease;
 
+  background: #187663;
+  background: linear-gradient(45deg, #187663, #0b666a);
   &:hover {
     -webkit-box-shadow: 0px 4px 12px -2px rgba(27, 66, 66, 1);
     -moz-box-shadow: 0px 4px 12px -2px rgba(27, 66, 66, 1);

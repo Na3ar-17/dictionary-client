@@ -42,6 +42,8 @@ module.exports = {
       icons: '#b2c5af',
       modals: '#222222',
       input: '#4a4a4a',
+      /* */
+      'bg-tower': '#454343',
     },
   },
   plugins: [require('tailwindcss-animate')],

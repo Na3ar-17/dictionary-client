@@ -38,15 +38,20 @@ const SheetMenu: FC<IProps> = ({
 
   const [firstInput, setFirstInput] = useState('')
   const [secondInput, setSecondInput] = useState('')
+  const [transcriptionInput, setTranscriptionInput] = useState('')
 
   const onSubmit: SubmitHandler<TypeRow> = async (values) => {
     let word = values.word.charAt(0).toUpperCase() + values.word.slice(1)
     let translation =
       values.translation.charAt(0).toUpperCase() + values.translation.slice(1)
+    let transcription =
+      values.transcription.charAt(0).toLowerCase() +
+      values.transcription.slice(1)
 
     const newValues = {
       word,
       translation,
+      transcription,
     }
 
     if (type === 'create') {
@@ -96,6 +101,8 @@ const SheetMenu: FC<IProps> = ({
               secondInput={secondInput}
               setFirstInput={setFirstInput}
               setSecondInput={setSecondInput}
+              transcriptionInput={transcriptionInput}
+              setTranscriptionInput={setTranscriptionInput}
             />
           </div>
         </SheetContent>

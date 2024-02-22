@@ -33,6 +33,27 @@ tr {
     .icon {
       @apply text-icons absolute right-0;
     }
+
+    .trigger {
+      @apply w-full;
+
+      .word {
+        width: fit-content;
+        .transcription {
+          @apply absolute bg-dropdown-menu-bg text-base
+            top-[-20px];
+          display: none;
+          visibility: hidden;
+        }
+
+        .show {
+          display: block;
+          visibility: visible;
+          @apply px-5 py-2;
+          color: #959595;
+        }
+      }
+    }
   }
 
   .translation {

@@ -1,4 +1,11 @@
-import { FC, useEffect, useLayoutEffect, useState } from 'react'
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react'
 import styles from './Form.module.scss'
 import {
   SubmitHandler,
@@ -17,8 +24,10 @@ interface IProps {
   rowId: string
   firstInput: string
   secondInput: string
-  setFirstInput: any
-  setSecondInput: any
+  setFirstInput: Dispatch<SetStateAction<string>>
+  setSecondInput: Dispatch<SetStateAction<string>>
+  transcriptionInput: string
+  setTranscriptionInput: Dispatch<SetStateAction<string>>
 }
 
 const Form: FC<IProps> = ({
@@ -32,6 +41,8 @@ const Form: FC<IProps> = ({
   secondInput,
   setFirstInput,
   setSecondInput,
+  setTranscriptionInput,
+  transcriptionInput,
 }) => {
   const { data } = useGetOneRow(folderId, rowId)
 
@@ -39,9 +50,11 @@ const Form: FC<IProps> = ({
     if (type === 'create') {
       setFirstInput('')
       setSecondInput('')
+      setTranscriptionInput('')
     } else {
       setFirstInput(data ? data.word : '')
       setSecondInput(data ? data.translation : '')
+      setTranscriptionInput(data ? data.transcription : '')
     }
   }, [data])
 
@@ -51,9 +64,8 @@ const Form: FC<IProps> = ({
         <div className={styles['inputs']}>
           <div className={styles['input-container']}>
             <label className={styles.label} htmlFor="word">
-              {/* Word or Letter : */}
               <input
-                {...register('word')}
+                {...register('word', { required: true })}
                 className={styles.input}
                 type="text"
                 id="word"
@@ -66,9 +78,8 @@ const Form: FC<IProps> = ({
           </div>
           <div className={styles['input-container']}>
             <label className={styles.label} htmlFor="translation">
-              {/* Translation : */}
               <input
-                {...register('translation')}
+                {...register('translation', { required: true })}
                 className={styles.input}
                 type="text"
                 id="translation"
@@ -76,6 +87,20 @@ const Form: FC<IProps> = ({
                 value={secondInput}
                 placeholder="Translation"
                 onChange={(e) => setSecondInput(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className={styles['input-container']}>
+            <label className={styles.label} htmlFor="transcription">
+              <input
+                {...register('transcription')}
+                className={styles.input}
+                type="text"
+                id="transcription"
+                autoComplete="off"
+                placeholder="Transcription"
+                value={transcriptionInput}
+                onChange={(e) => setTranscriptionInput(e.target.value)}
               />
             </label>
           </div>

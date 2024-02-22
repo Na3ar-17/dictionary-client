@@ -37,6 +37,7 @@ const DictionaryBody = () => {
       </header>
       <main className={styles.body}>
         <Table
+          key={folderId}
           folderId={folderId || '0'}
           isOpenSheet={isOpenSheet}
           setOpenSheet={setOpenSheet}

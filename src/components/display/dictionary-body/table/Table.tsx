@@ -63,6 +63,7 @@ const Table: FC<IProps> = ({
                 setOpenSheet={setOpenSheet}
                 setRowId={setRowId}
                 setType={setType}
+                key={el.id}
               />
             ))
           ) : (

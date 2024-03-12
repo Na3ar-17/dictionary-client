@@ -4,6 +4,7 @@ import { BarChart3, BookCheck, Eye, EyeOff } from 'lucide-react'
 import { useRow } from '../../../../api/hooks/useRow'
 import { Link } from 'react-router-dom'
 import Row from './Row/Row'
+import { motion } from 'framer-motion'
 
 interface IProps {
   setOpenSheet: Dispatch<SetStateAction<boolean>>
@@ -47,7 +48,12 @@ const Table: FC<IProps> = ({
           />
         )}
       </div>
-      <table className={styles.table}>
+      <motion.table
+        initial={{ opacity: 0, translateY: 20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.2 }}
+        className={styles.table}
+      >
         <tbody>
           <tr style={{ userSelect: 'none' }}>
             <th>Word or Letter</th>
@@ -72,7 +78,7 @@ const Table: FC<IProps> = ({
             </tr>
           )}
         </tbody>
-      </table>
+      </motion.table>
     </section>
   )
 }

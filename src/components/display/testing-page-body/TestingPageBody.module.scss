@@ -2,7 +2,7 @@
   @apply flex items-center justify-center;
 
   .block {
-    @apply p-2 w-[620px] h-[310px] rounded-md bg-modals mt-[100px] flex flex-col relative;
+    @apply p-2 w-[620px] h-[200px] rounded-md bg-modals mt-[100px] flex flex-col relative;
     .underline {
       content: '';
       position: absolute;

@@ -7,15 +7,14 @@
       .input-container {
         .label {
           .input {
-            @apply w-64 h-9 text-[18px]  border-input px-2 bg-[#6369692b] transition-all;
-            border-bottom: 2px solid;
+            @apply w-[260px] h-9 text-[18px] rounded-sm px-2 bg-[#6369692b] transition-all;
           }
         }
       }
     }
 
     .button {
-      @apply w-40 bg-card-background text-[17px] text-center h-10 rounded-sm font-semibold mt-8 active:scale-95 transition-all;
+      @apply w-40 bg-card-background cursor-pointer text-[17px] text-center h-10 rounded-sm font-semibold mt-8 active:scale-95 transition-all;
     }
   }
 }

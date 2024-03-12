@@ -1,9 +1,7 @@
 tr {
-  @apply min-h-11 grid grid-cols-2 transition-all;
-  border-bottom: 2px solid #cbcbd8;
+  @apply min-h-11 grid grid-cols-2  transition-all;
 
   &:hover:not(&:first-child) {
-    @apply bg-[#9baea71d] cursor-pointer;
     .translation {
       opacity: 1;
     }
@@ -16,18 +14,17 @@ tr {
 
   th {
     @apply text-xl text-text;
-    &:first-child {
-      border-right: 2px solid #cbcbd8;
-    }
   }
 
   td {
-    @apply text-lg text-start  px-4 flex items-center relative min-h-[43px];
+    @apply text-lg text-start mb-2 mr-2 rounded-md transition-all px-4 flex items-center relative min-h-[43px];
     word-wrap: break-word;
     font-family: 'Open Sans', sans-serif;
     font-style: italic;
-    &:first-child {
-      border-right: 2px solid #cbcbd8;
+    background-color: #171717;
+
+    &:hover {
+      @apply cursor-pointer bg-[#242424];
     }
 
     .icon {

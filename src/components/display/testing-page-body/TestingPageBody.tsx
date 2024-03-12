@@ -13,20 +13,13 @@ const TestingPageBody: FC<IProps> = ({ folderId }) => {
   const [isStarted, setIsStarted] = useState<boolean>(
     cookies.get('isStarted') === 'true'
   )
-  const [input, setInput] = useState<string>('')
   const [mistakes, setMistakes] = useState<number>(0)
   const [isIDontKnow, setIDontKnow] = useState<boolean>(false)
 
   const { data, isSuccess, refetch } = useGetRandomRow(folderId)
 
   const handleCheckTest = () => {
-    if (input.length !== 0) {
-      if (input.toLowerCase() !== data?.translation.toLowerCase()) {
-        setMistakes((prev) => prev + 1)
-      }
-      setInput('')
-      refetch()
-    }
+    refetch()
   }
 
   const handleEnd = () => {
@@ -58,22 +51,13 @@ const TestingPageBody: FC<IProps> = ({ folderId }) => {
                   }`}
                 ></div>
                 <p className="text-[18px]">{data.word}</p>
-                <div>
-                  <input
-                    className={styles.input}
-                    type="text"
-                    placeholder="Write translation"
-                    value={input}
-                    onChange={(e) => setInput(e.currentTarget.value)}
-                  />
-                </div>
                 <div className="grid grid-cols-3 gap-8">
                   <button
                     disabled={isIDontKnow}
                     onClick={() => handleCheckTest()}
                     className={styles.button}
                   >
-                    Check
+                    I know
                   </button>
                   <button
                     disabled={isIDontKnow}

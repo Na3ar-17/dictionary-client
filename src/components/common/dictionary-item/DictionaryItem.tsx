@@ -2,6 +2,7 @@ import styles from './DictionaryItem.module.scss'
 import DropdownMenuComponent from '../../ui/dropdown-menu/DropdownMenuComponent'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 interface IProps {
   title: string
@@ -11,7 +12,7 @@ interface IProps {
 
 const DictionaryItem: FC<IProps> = ({ title, itemsCount, id }) => {
   return (
-    <div className={styles.item}>
+    <motion.div className={styles.item}>
       <DropdownMenuComponent id={id.toString()} />
       <p className={styles.title}>
         <Link to={`/dictionary/${id}`}>{title}</Link>
@@ -19,7 +20,7 @@ const DictionaryItem: FC<IProps> = ({ title, itemsCount, id }) => {
       <p className={styles['items-count']}>
         <span>items:</span> {itemsCount}
       </p>
-    </div>
+    </motion.div>
   )
 }
 

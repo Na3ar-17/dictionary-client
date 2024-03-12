@@ -10,4 +10,5 @@ export const KEYS = {
   ROW_CREATE: 'row-create',
   ROW_DELETE: 'row-delete',
   ROW_UPDATE: 'row-update',
+  STATISTICS: 'statistics',
 }

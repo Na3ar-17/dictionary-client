@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useRef, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import styles from './Row.module.scss'
 import {
   ContextMenu,
@@ -10,6 +10,7 @@ import { Pencil, Trash2 } from 'lucide-react'
 import { ContextMenuShortcut } from '../../../../../../@/components/ui/context-menu'
 import { IRow } from '../../../../../interfaces/row.interface'
 import { useDeleteRow } from '../../../../ui/sheet-menu/utils/useDeleteRow'
+import { motion } from 'framer-motion'
 
 interface IProps {
   el: IRow
@@ -47,7 +48,7 @@ const Row: FC<IProps> = (props) => {
 
   const { handleDeleteRow } = useDeleteRow()
   return (
-    <tr className={styles.tr} key={el.id}>
+    <motion.tr className={styles.tr} key={el.id}>
       <td>
         <ContextMenu>
           <ContextMenuTrigger className={styles.trigger}>
@@ -104,7 +105,7 @@ const Row: FC<IProps> = (props) => {
       <td className={`${styles.translation} ${isHidden ? styles.hidden : ''}`}>
         {el.translation}
       </td>
-    </tr>
+    </motion.tr>
   )
 }
 

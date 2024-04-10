@@ -1,0 +1,8 @@
+.book-mark {
+  .book-mark-content {
+    @apply flex justify-between;
+  }
+  .content {
+    @apply grid grid-cols-4 gap-y-12 pt-9 place-items-center;
+  }
+}

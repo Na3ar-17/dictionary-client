@@ -9,8 +9,13 @@
   display: revert;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 body {
   @apply bg-primary text-text;
+  min-height: 100vh;
 }
 
 /* Preferred box-sizing value */

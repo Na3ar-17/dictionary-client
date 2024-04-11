@@ -1,0 +1,12 @@
+.container {
+  .content {
+    @apply grid place-items-center px-2 pt-8;
+    .table {
+      @apply w-full;
+      max-width: 1250px;
+      tbody {
+        @apply w-full text-center flex flex-col;
+      }
+    }
+  }
+}

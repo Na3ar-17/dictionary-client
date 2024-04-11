@@ -2,7 +2,7 @@
   position: relative;
   width: 254px;
   height: 190px;
-  background-color: #000;
+  @apply bg-bg;
   display: flex;
   flex-direction: column;
   justify-content: end;

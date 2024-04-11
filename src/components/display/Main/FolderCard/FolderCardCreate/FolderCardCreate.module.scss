@@ -1,0 +1,17 @@
+.card {
+  width: 254px;
+  height: 190px;
+  @apply bg-bg rounded-lg p-1.5 cursor-pointer transition-all;
+  .content {
+    @apply h-full rounded-lg flex justify-center items-center;
+    border: 2px dashed #646464;
+
+    .icon {
+      @apply size-9 text-bg2;
+    }
+  }
+
+  &:active {
+    transform: translateY(3px);
+  }
+}

@@ -11,8 +11,10 @@ const FolderCard: FC<IProps> = ({ data }) => {
   return (
     <div className={styles.card}>
       <p className={styles.heading}>{title}</p>
-      <p>{createdAt}</p>
-      <p>Items: {itemsCount}</p>
+      <div>
+        <p>{createdAt}</p>
+        <p>Items: {itemsCount}</p>
+      </div>
     </div>
   )
 }

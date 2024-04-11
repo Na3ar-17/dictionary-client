@@ -1,0 +1,24 @@
+.nav {
+  @apply w-full h-[70px] bg-bg;
+  .content {
+    @apply flex justify-between items-center h-full px-8;
+    .title {
+      @apply text-2xl font-bold;
+    }
+
+    .icons {
+      @apply flex items-center gap-4 relative;
+      .icon {
+        @apply size-6 cursor-pointer  transition-all active:scale-95 hover:text-[#c9c8c8];
+      }
+
+      .notifications {
+        position: absolute;
+        bottom: -103%;
+        left: -13%;
+        transform: translate(-50%, -50%);
+        @apply rounded-full flex justify-center text-base items-center w-5 h-5 bg-red;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.create-row {
+  height: 44px;
+  @apply bg-bg p-1 w-full relative mb-3 rounded-md transition-all cursor-pointer;
+
+  .content {
+    border: 2px dashed #646464;
+    @apply h-full rounded-md;
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @apply text-bg2 size-5;
+    }
+  }
+
+  &:active {
+    transform: translateY(3px);
+  }
+}

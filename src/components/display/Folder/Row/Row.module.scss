@@ -1,0 +1,33 @@
+tr {
+  @apply bg-bg mb-2 rounded-md flex relative;
+
+  .icons {
+    @apply flex items-center gap-2 absolute opacity-0 transition-all;
+    top: 50%;
+    left: 35px;
+    transform: translate(-50%, -50%);
+    .icon {
+      @apply size-5 text-bg2 cursor-pointer transition-all;
+
+      &:last-child {
+        @apply text-red;
+      }
+
+      &:active {
+        transform: translateY(2px);
+      }
+    }
+  }
+  .letter {
+    @apply cursor-pointer;
+  }
+  td {
+    @apply py-2 text-lg w-[50%];
+  }
+
+  &:hover {
+    .icons {
+      @apply opacity-100;
+    }
+  }
+}

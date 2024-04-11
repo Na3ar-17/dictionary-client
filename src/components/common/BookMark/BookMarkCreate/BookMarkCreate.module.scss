@@ -1,0 +1,24 @@
+.book-mark-create {
+  @apply h-[52px] bg-bg mb-5 p-1 cursor-pointer transition-all;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  .book-mark-create-content {
+    @apply h-full relative;
+    border: 2px dashed #646464;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      @apply size-6 text-bg2;
+    }
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}

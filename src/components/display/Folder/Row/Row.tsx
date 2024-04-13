@@ -4,6 +4,7 @@ import TooltipComponent from '../../../ui/tooltip-component/TooltipComponent'
 import { Check, Pencil, Trash2 } from 'lucide-react'
 import { IRow, TypeEditRow } from '../../../../types/row.types'
 import { useDeleteRow, useUpdateRow } from '../../../../api/hooks/row'
+import ContextMenuComponent from '../../../ui/context-menu-component/ContextMenuComponent'
 
 interface IProps {
   data: IRow
@@ -16,6 +17,7 @@ const Row: FC<IProps> = ({ data, isLayout = false }) => {
   const [values, setValues] = useState({
     word: word,
     translation: translation,
+    transcription: transcription,
   })
 
   const [isEdit, setIsEdit] = useState<boolean>(false)
@@ -29,26 +31,74 @@ const Row: FC<IProps> = ({ data, isLayout = false }) => {
 
   return (
     <>
-      <div className={`${styles.container} ${isEdit && styles.edit}`}>
-        <div className={styles.icons}>
-          <Pencil className={styles.icon} />
-          <Check className={styles.icon} />
-          <Trash2 className={styles.icon} />
+      <ContextMenuComponent
+        key={id}
+        onDelete={deleteRow}
+        onEdit={() => setIsEdit(!isEdit)}
+      >
+        <div className={`${styles.container} ${isEdit && styles.edit}`}>
+          {isEdit && (
+            <Check
+              className={styles.icon}
+              onClick={() => {
+                const dto = {
+                  ...values,
+                  rowId: id,
+                  folderId,
+                }
+                handleUpdateRow(dto)
+                setIsEdit(!isEdit)
+              }}
+            />
+          )}
+          {isEdit ? (
+            <input
+              type="text"
+              onChange={(e) => {
+                setValues({
+                  word: e.currentTarget.value,
+                  transcription: values.transcription,
+                  translation: values.translation,
+                })
+              }}
+              value={values.word}
+            />
+          ) : (
+            <TooltipComponent key={id} text={transcription || ''}>
+              <div className={styles.letter}>{values.word}</div>
+            </TooltipComponent>
+          )}
+
+          {isEdit ? (
+            <input
+              type="text"
+              onChange={(e) => {
+                setValues({
+                  word: values.word,
+                  transcription: values.transcription,
+                  translation: e.currentTarget.value,
+                })
+              }}
+              value={values.translation}
+            />
+          ) : (
+            <div className={styles.translation}>{values.translation}</div>
+          )}
+          {isEdit && (
+            <input
+              type="text"
+              onChange={(e) => {
+                setValues({
+                  word: values.word,
+                  transcription: e.currentTarget.value,
+                  translation: values.translation,
+                })
+              }}
+              value={values.transcription}
+            />
+          )}
         </div>
-        <div className={styles.letter}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quisquam
-          exercitationem commodi autem perferendis quis ipsum minima voluptates
-          saepe odit.
-        </div>
-        <div className={styles.translation}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa officia
-          quisquam quibusdam quis alias tempore doloribus similique est,
-          corrupti natus illum minus, fugiat ex sit aut provident animi
-          corporis, architecto temporibus fuga tempora mollitia ipsam. Eius non
-          fuga voluptatum?
-        </div>
-        {isEdit && <div className={styles.transcription}></div>}
-      </div>
+      </ContextMenuComponent>
     </>
   )
 }

@@ -20,7 +20,7 @@ const TooltipComponent: FC<IProps> = ({ children, text }) => {
           style={{ display: `${text === '' ? 'none' : 'block'}` }}
           className={styles.content}
         >
-          <p className="bg-bg2 px-2 py-1.5 rounded-md text-base">text</p>
+          <p className="bg-bg2 px-2 py-1.5 rounded-md text-base">{text}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

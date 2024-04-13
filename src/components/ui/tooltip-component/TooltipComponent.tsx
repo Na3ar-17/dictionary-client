@@ -16,8 +16,11 @@ const TooltipComponent: FC<IProps> = ({ children, text }) => {
     <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent className={styles.content}>
-          <p className="bg-bg2 px-2 py-1.5 rounded-md text-base">{text}</p>
+        <TooltipContent
+          style={{ display: `${text === '' ? 'none' : 'block'}` }}
+          className={styles.content}
+        >
+          <p className="bg-bg2 px-2 py-1.5 rounded-md text-base">text</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

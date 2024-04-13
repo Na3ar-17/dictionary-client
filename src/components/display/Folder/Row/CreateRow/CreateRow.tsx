@@ -1,11 +1,17 @@
 import { FC } from 'react'
 import styles from './CreateRow.module.scss'
 import { FilePlus } from 'lucide-react'
-interface IProps {}
+import { useCreateRow } from '../../../../../api/hooks/row'
 
-const CreateRow: FC<IProps> = ({}) => {
+interface IProps {
+  bookMarkId: string
+  id: string
+}
+
+const CreateRow: FC<IProps> = ({ bookMarkId, id }) => {
+  const { mutate } = useCreateRow(id, bookMarkId)
   return (
-    <div className={styles['create-row']}>
+    <div className={styles['create-row']} onClick={() => mutate()}>
       <div className={styles.content}>
         <FilePlus className={styles.icon} />
       </div>

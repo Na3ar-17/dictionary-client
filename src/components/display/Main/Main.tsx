@@ -1,21 +1,32 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Main.module.scss'
 import BookMark from '../../common/BookMark/BookMark'
-import FolderCard from './FolderCard/FolderCard'
-import { folderCardData } from '../../../data/folderCard.data'
 import BookMarkCreate from '../../common/BookMark/BookMarkCreate/BookMarkCreate'
 import FolderCardCreate from './FolderCard/FolderCardCreate/FolderCardCreate'
+import { useGetBookMarks } from '../../../api/hooks/bookMark'
+import Loader from '../../ui/loader/Loader'
+import Error from '../../ui/error/Error'
+import FolderContainer from './FolderCard/FolderContainer/FolderContainer'
 
 const Main: FC = () => {
+  const { data, isLoading, isSuccess } = useGetBookMarks()
+
+  if (!isSuccess) return <Error text="Can't fetch book marks " />
+  if (isLoading) return <Loader />
+
   return (
     <main className={styles.container}>
       <BookMarkCreate />
-      <BookMark createdAt="10.04.2024 16:49" title="First Week">
-        <FolderCardCreate />
-        {folderCardData.map((card) => (
-          <FolderCard data={card} key={card.id} />
-        ))}
-      </BookMark>
+      {data.map((bookMark) => (
+        <BookMark
+          key={bookMark.id}
+          createdAt={bookMark.createdAt}
+          title={bookMark.title}
+        >
+          <FolderCardCreate />
+          <FolderContainer bookMarkId={bookMark.id || ''} />
+        </BookMark>
+      ))}
     </main>
   )
 }

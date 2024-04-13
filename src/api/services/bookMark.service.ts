@@ -1,16 +1,23 @@
 import { IBookMark, TypeBookMarkAction } from '../../types/bookMar.types'
 import axios from '../axios'
+import { dateFormatter } from '../utils'
 
 class BookMarkService {
   private URL = 'book-mark'
 
   async getAll(): Promise<IBookMark[]> {
-    const { data } = await axios.get(this.URL)
-    return data
+    const { data } = await axios.get<IBookMark[]>(this.URL)
+
+    const formattedData = data.map((bookmark) => ({
+      ...bookmark,
+      createdAt: dateFormatter(bookmark.createdAt),
+    }))
+
+    return formattedData
   }
 
   async create(dto: TypeBookMarkAction): Promise<IBookMark> {
-    const { data } = await axios.post(this.URL + 'create', { params: dto })
+    const { data } = await axios.post(this.URL + 'create', dto)
     return data
   }
 

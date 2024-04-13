@@ -1,33 +1,27 @@
-tr {
-  @apply bg-bg mb-2 rounded-md flex relative;
+.container {
+  @apply w-full relative min-h-[44px] bg-bg mb-3 rounded-md grid grid-cols-2 px-2 py-1;
 
   .icons {
-    @apply flex items-center gap-2 absolute opacity-0 transition-all;
+    position: absolute;
     top: 50%;
-    left: 35px;
+    left: -30px;
     transform: translate(-50%, -50%);
-    .icon {
-      @apply size-5 text-bg2 cursor-pointer transition-all;
-
-      &:last-child {
-        @apply text-red;
-      }
-
-      &:active {
-        transform: translateY(2px);
-      }
-    }
+    opacity: 0;
+    visibility: hidden;
   }
-  .letter {
-    @apply cursor-pointer;
+
+  .letter,
+  .translation {
+    @apply text-center text-lg;
   }
-  td {
-    @apply py-2 text-lg w-[50%];
+
+  .translation {
   }
 
   &:hover {
     .icons {
-      @apply opacity-100;
+      opacity: 1;
+      visibility: visible;
     }
   }
 }

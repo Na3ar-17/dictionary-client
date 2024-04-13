@@ -1,25 +1,32 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import styles from './Folder.module.scss'
 import Row from './Row/Row'
 import CreateRow from './Row/CreateRow/CreateRow'
-import TooltipComponent from '../../ui/tooltip-component/TooltipComponent'
+import { useCreateRow, useGetRows } from '../../../api/hooks/row'
+import Error from '../../ui/error/Error'
+import Loader from '../../ui/loader/Loader'
+import { IRow } from '../../../types/row.types'
 
 interface IProps {
-  slug?: string
+  id?: string
   bookMarkId: string
 }
 
-const Folder: FC<IProps> = ({ slug }) => {
+const Folder: FC<IProps> = ({ id, bookMarkId }) => {
+  const { data, isSuccess, isLoading } = useGetRows(id || '')
+
+  if (!isSuccess) return <Error text="Can'n fetch rows " />
+  if (isLoading) return <Loader />
   return (
     <main className={styles.container}>
-      <div className={styles['folder-name']}>Folder 1</div>
-
+      <div className={styles['folder-name']}></div>
       <div className={styles.content}>
         <table className={styles.table}>
           <tbody>
-            <CreateRow />
-            {Array.from({ length: 5 }).map((el) => (
-              <Row />
+            <CreateRow bookMarkId={bookMarkId} id={id || ''} />
+
+            {data.map((row) => (
+              <Row data={row} key={row.id} />
             ))}
           </tbody>
         </table>

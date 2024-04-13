@@ -1,30 +1,55 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './Row.module.scss'
 import TooltipComponent from '../../../ui/tooltip-component/TooltipComponent'
-import { Pencil, Trash2 } from 'lucide-react'
+import { Check, Pencil, Trash2 } from 'lucide-react'
+import { IRow, TypeEditRow } from '../../../../types/row.types'
+import { useDeleteRow, useUpdateRow } from '../../../../api/hooks/row'
 
 interface IProps {
-  letter?: string
-  translation?: string
-  transcription?: string
+  data: IRow
+  isLayout?: boolean
 }
 
-const Row: FC<IProps> = ({ translation, letter, transcription }) => {
+const Row: FC<IProps> = ({ data, isLayout = false }) => {
+  const { folderId, id, transcription, translation, word, bookMarkId } = data
+
+  const [values, setValues] = useState({
+    word: word,
+    translation: translation,
+  })
+
+  const [isEdit, setIsEdit] = useState<boolean>(false)
+
+  const { mutate: deleteRow } = useDeleteRow(folderId, bookMarkId, id)
+  const { mutate: updateRow } = useUpdateRow()
+
+  const handleUpdateRow = (dto: TypeEditRow) => {
+    updateRow(dto)
+  }
+
   return (
-    <tr>
-      <span className={styles.icons}>
-        <Pencil className={styles.icon} />
-        <Trash2 className={styles.icon} />
-      </span>
-      <td className={styles.letter}>
-        <TooltipComponent text={transcription || ''}>
-          <p> I have a warant to search the premises</p>
-        </TooltipComponent>
-      </td>
-      <td className={styles.translation}>
-        У мене є одрер на обшук приміщення lorem100
-      </td>
-    </tr>
+    <>
+      <div className={`${styles.container} ${isEdit && styles.edit}`}>
+        <div className={styles.icons}>
+          <Pencil className={styles.icon} />
+          <Check className={styles.icon} />
+          <Trash2 className={styles.icon} />
+        </div>
+        <div className={styles.letter}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quisquam
+          exercitationem commodi autem perferendis quis ipsum minima voluptates
+          saepe odit.
+        </div>
+        <div className={styles.translation}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa officia
+          quisquam quibusdam quis alias tempore doloribus similique est,
+          corrupti natus illum minus, fugiat ex sit aut provident animi
+          corporis, architecto temporibus fuga tempora mollitia ipsam. Eius non
+          fuga voluptatum?
+        </div>
+        {isEdit && <div className={styles.transcription}></div>}
+      </div>
+    </>
   )
 }
 

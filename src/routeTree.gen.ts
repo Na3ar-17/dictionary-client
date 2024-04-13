@@ -12,7 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as FolderSlugImport } from './routes/folder/$slug'
+import { Route as FolderIdBookMarkIdImport } from './routes/folder/$id/$bookMarkId'
 
 // Create/Update Routes
 
@@ -21,8 +21,8 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const FolderSlugRoute = FolderSlugImport.update({
-  path: '/folder/$slug',
+const FolderIdBookMarkIdRoute = FolderIdBookMarkIdImport.update({
+  path: '/folder/$id/$bookMarkId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -34,8 +34,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/folder/$slug': {
-      preLoaderRoute: typeof FolderSlugImport
+    '/folder/$id/$bookMarkId': {
+      preLoaderRoute: typeof FolderIdBookMarkIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -43,6 +43,9 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexRoute, FolderSlugRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexRoute,
+  FolderIdBookMarkIdRoute,
+])
 
 /* prettier-ignore-end */

@@ -28,7 +28,7 @@
   }
 
   .content {
-    @apply grid grid-cols-4 gap-y-12 pt-9 place-items-center bg-[#1e1e1e96] pb-10 h-fit;
+    @apply flex items-center justify-center gap-7 p-7 bg-[#1e1e1e96] pb-10 h-fit;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }

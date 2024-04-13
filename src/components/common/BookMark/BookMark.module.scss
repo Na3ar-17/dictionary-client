@@ -10,7 +10,7 @@
     border-top-right-radius: 10px;
 
     .title {
-      @apply text-lg font-semibold;
+      @apply text-lg font-semibold flex items-center;
       span {
         @apply ml-7 text-sm text-bg2;
       }
@@ -18,7 +18,11 @@
 
     div {
       .icon-action {
-        @apply size-5 opacity-0 transition-all cursor-pointer text-red;
+        @apply size-5 opacity-0 transition-all cursor-pointer;
+
+        &:nth-child(2) {
+          @apply text-red;
+        }
       }
 
       .icon {

@@ -3,7 +3,11 @@ export interface IFolder {
   title: string
   itemsCount: number
   bookMarkId: string
-  slug: string
   createdAt: string
   updatedAt: Date
 }
+
+export type TypeEditFolder = Omit<
+  IFolder,
+  'itemsCount' | 'slug' | 'createdAt' | 'updatedAt' | 'id'
+>

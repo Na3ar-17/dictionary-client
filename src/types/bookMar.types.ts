@@ -5,4 +5,11 @@ export interface IBookMark {
   updatedAt: Date
 }
 
-export type TypeBookMarkAction = Omit<IBookMark, 'createdAt' | 'updatedAt'>
+export type TypeBookMarkCreate = Omit<
+  IBookMark,
+  'createdAt' | 'updatedAt' | 'id'
+>
+export type TypeBookMarkUpdate = Omit<
+  IBookMark,
+  'createdAt' | 'updatedAt' | 'id'
+>

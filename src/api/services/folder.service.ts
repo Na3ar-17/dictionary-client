@@ -1,5 +1,5 @@
 import axios from '../axios'
-import { IFolder } from '../../types/folder.types'
+import { IFolder, TypeEditFolder } from '../../types/folder.types'
 import { dateFormatter } from '../utils'
 
 class FolderService {
@@ -14,6 +14,23 @@ class FolderService {
     }))
 
     return formatedData
+  }
+
+  async delete(id: string, bookMarkId: string) {
+    await axios.delete(`${this.URL}/delete/${id}/${bookMarkId}`)
+  }
+
+  async update(dto: TypeEditFolder, fodlerId: string): Promise<IFolder> {
+    const { data } = await axios.put<IFolder>(
+      `${this.URL}/update/${fodlerId}`,
+      dto
+    )
+    return data
+  }
+  async create(bookMarkId: string): Promise<IFolder> {
+    const { data } = await axios.post(`${this.URL}/create/${bookMarkId}`)
+
+    return data
   }
 }
 

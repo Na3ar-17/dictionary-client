@@ -22,8 +22,9 @@ const Main: FC = () => {
           key={bookMark.id}
           createdAt={bookMark.createdAt}
           title={bookMark.title}
+          id={bookMark.id || ''}
         >
-          <FolderCardCreate />
+          <FolderCardCreate bookMarkId={bookMark.id || ''} />
           <FolderContainer bookMarkId={bookMark.id || ''} />
         </BookMark>
       ))}

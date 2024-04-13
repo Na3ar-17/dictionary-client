@@ -1,5 +1,6 @@
 import axios from '../axios'
 import { IRow, TypeCreateRow, TypeEditRow } from '../../types/row.types'
+import { IFolder } from '../../types/folder.types'
 
 class RowService {
   private URL = 'row'

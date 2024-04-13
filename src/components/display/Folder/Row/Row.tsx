@@ -62,6 +62,7 @@ const Row: FC<IProps> = ({ data, isLayout = false }) => {
                 })
               }}
               value={values.word}
+              placeholder="Letter here ..."
             />
           ) : (
             <TooltipComponent key={id} text={transcription || ''}>
@@ -79,6 +80,7 @@ const Row: FC<IProps> = ({ data, isLayout = false }) => {
                   translation: e.currentTarget.value,
                 })
               }}
+              placeholder="Translation here ..."
               value={values.translation}
             />
           ) : (
@@ -94,6 +96,7 @@ const Row: FC<IProps> = ({ data, isLayout = false }) => {
                   translation: values.translation,
                 })
               }}
+              placeholder="Transcription here ..."
               value={values.transcription}
             />
           )}

@@ -12,7 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as FolderIdBookMarkIdImport } from './routes/folder/$id/$bookMarkId'
+import { Route as FolderIdBookMarkIdTestingImport } from './routes/folder/$id/$bookMarkId/testing'
+import { Route as FolderIdBookMarkIdRowsImport } from './routes/folder/$id/$bookMarkId/rows'
 
 // Create/Update Routes
 
@@ -21,8 +22,13 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const FolderIdBookMarkIdRoute = FolderIdBookMarkIdImport.update({
-  path: '/folder/$id/$bookMarkId',
+const FolderIdBookMarkIdTestingRoute = FolderIdBookMarkIdTestingImport.update({
+  path: '/folder/$id/$bookMarkId/testing',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FolderIdBookMarkIdRowsRoute = FolderIdBookMarkIdRowsImport.update({
+  path: '/folder/$id/$bookMarkId/rows',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -34,8 +40,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/folder/$id/$bookMarkId': {
-      preLoaderRoute: typeof FolderIdBookMarkIdImport
+    '/folder/$id/$bookMarkId/rows': {
+      preLoaderRoute: typeof FolderIdBookMarkIdRowsImport
+      parentRoute: typeof rootRoute
+    }
+    '/folder/$id/$bookMarkId/testing': {
+      preLoaderRoute: typeof FolderIdBookMarkIdTestingImport
       parentRoute: typeof rootRoute
     }
   }
@@ -45,7 +55,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  FolderIdBookMarkIdRoute,
+  FolderIdBookMarkIdRowsRoute,
+  FolderIdBookMarkIdTestingRoute,
 ])
 
 /* prettier-ignore-end */

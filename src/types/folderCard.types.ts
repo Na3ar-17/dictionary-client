@@ -3,6 +3,5 @@ export interface IFolderCardData {
   title?: string
   itemsCount?: number
   createdAt?: string
-  slug?: string
   bookMarkId: string
 }

@@ -1,4 +1,8 @@
-import { IBookMark, TypeBookMarkAction } from '../../types/bookMar.types'
+import {
+  IBookMark,
+  TypeBookMarkCreate,
+  TypeBookMarkUpdate,
+} from '../../types/bookMar.types'
 import axios from '../axios'
 import { dateFormatter } from '../utils'
 
@@ -16,20 +20,18 @@ class BookMarkService {
     return formattedData
   }
 
-  async create(dto: TypeBookMarkAction): Promise<IBookMark> {
-    const { data } = await axios.post(this.URL + 'create', dto)
+  async create(): Promise<IBookMark> {
+    const { data } = await axios.post(`${this.URL}/create`)
     return data
   }
 
-  async update(dto: TypeBookMarkAction): Promise<IBookMark> {
-    const { data } = await axios.put(this.URL + `update/${dto.id}`, {
-      params: dto,
-    })
+  async update(dto: TypeBookMarkUpdate, id: string): Promise<IBookMark> {
+    const { data } = await axios.put(`${this.URL}/update/${id}`, dto)
     return data
   }
 
-  async delete(dto: TypeBookMarkAction) {
-    const { data } = await axios.delete(this.URL + `delete/${dto.id}`)
+  async delete(id: string) {
+    const { data } = await axios.delete(`${this.URL}/delete/${id}`)
     return data
   }
 }

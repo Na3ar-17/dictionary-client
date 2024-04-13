@@ -1,6 +1,7 @@
 import NavBar from '../../common/Navbar/NavBar'
 import { QueryProvider } from '../../providers/queryProvider'
 import styles from './layout.module.scss'
+import { Toaster } from 'sonner'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -9,6 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <NavBar notificationsCount={0} />
         <div className={styles.content}>{children}</div>
       </main>
+      <Toaster position="bottom-right" theme="dark" />
     </QueryProvider>
   )
 }

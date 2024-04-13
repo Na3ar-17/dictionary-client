@@ -6,7 +6,8 @@ import {
 } from '@tanstack/react-query'
 import { KEYS } from '../keys'
 import { rowService } from '../services/row.service'
-import { TypeCreateRow, TypeEditRow } from '../../types/row.types'
+import { TypeEditRow } from '../../types/row.types'
+import { toast } from 'sonner'
 
 export const useGetRows = (folderId: string) => {
   return useQuery({
@@ -23,6 +24,7 @@ export const useCreateRow = (folderId: string, bookMarkId: string) => {
     mutationFn: () => rowService.create(folderId, bookMarkId),
     onSuccess: () => {
       queryClient.invalidateQueries()
+      toast.success('Successfuly created row')
     },
   })
 
@@ -41,6 +43,7 @@ export const useDeleteRow = (
     mutationFn: () => rowService.delete(folderId, rowId, bookMarkId),
     onSuccess: () => {
       queryClient.invalidateQueries()
+      toast.success('Successfuly deleted row')
     },
   })
 
@@ -55,6 +58,7 @@ export const useUpdateRow = () => {
     mutationFn: (dto: TypeEditRow) => rowService.update(dto),
     onSuccess: () => {
       queryClient.invalidateQueries()
+      toast.success('Successfuly updated row')
     },
   })
 

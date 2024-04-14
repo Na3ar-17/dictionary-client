@@ -1,12 +1,18 @@
 import axios from '../axios'
-import { IRow, TypeCreateRow, TypeEditRow } from '../../types/row.types'
-import { IFolder } from '../../types/folder.types'
+import { IRow, IRowRandom, TypeEditRow } from '../../types/row.types'
 
 class RowService {
   private URL = 'row'
 
   async getAll(folderId: string): Promise<IRow[]> {
     const { data } = await axios.get<IRow[]>(`${this.URL}/get-all/${folderId}`)
+    return data
+  }
+
+  async getRandom(folderId: string): Promise<IRowRandom> {
+    const { data } = await axios.get<IRowRandom>(
+      `${this.URL}/get-random/${folderId}`
+    )
     return data
   }
 

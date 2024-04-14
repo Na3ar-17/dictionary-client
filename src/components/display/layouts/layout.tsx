@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryProvider>
       <main className={styles.layout}>
-        <NavBar notificationsCount={0} />
+        <NavBar />
         <div className={styles.content}>{children}</div>
       </main>
       <Toaster position="bottom-right" theme="dark" />

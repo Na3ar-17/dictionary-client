@@ -13,6 +13,7 @@ export const useGetRows = (folderId: string) => {
   return useQuery({
     queryKey: [KEYS.ROW],
     queryFn: () => rowService.getAll(folderId),
+    enabled: !!folderId,
   })
 }
 
@@ -63,4 +64,11 @@ export const useUpdateRow = () => {
   })
 
   return { mutate }
+}
+
+export const useGetRandomRow = (folderId: string) => {
+  return useQuery({
+    queryKey: [KEYS.ROW_RANDOM, folderId],
+    queryFn: () => rowService.getRandom(folderId),
+  })
 }

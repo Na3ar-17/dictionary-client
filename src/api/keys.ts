@@ -8,7 +8,11 @@ export const KEYS = {
   FOLDER_UPDATE: 'folder_update',
   FOLDER_CREATE: 'folder_create',
   ROW: 'row',
+  ROW_RANDOM: 'row_random',
   ROW_CREATE: 'row_create',
   ROW_DELETE: 'row_delete',
   ROW_UPDATE: 'row_update',
+  NOTIFICATION: 'notificatio',
+  NOTIFICATION_CREATE: 'notificatio_create',
+  NOTIFICATION_DELETE: 'notificatio_delete',
 }

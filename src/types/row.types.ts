@@ -9,6 +9,10 @@ export interface IRow {
   updatedAt?: Date
 }
 
+export interface IRowRandom extends IRow {
+  next: number
+}
+
 export type TypeCreateRow = Omit<
   IRow,
   'id' | 'updatedAt' | 'createdAt' | 'word' | 'transcription' | 'translation'

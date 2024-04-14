@@ -1,0 +1,55 @@
+.container {
+  @apply flex items-center justify-center;
+
+  .modal {
+    @apply w-[600px] h-[200px] bg-bg p-5 relative;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+    .header {
+      .letter {
+        @apply text-lg font-semibold text-center;
+      }
+    }
+
+    .body {
+      @apply flex items-center justify-center h-[70%];
+      .btn {
+        @apply px-5 py-2 bg-red text-center mr-3 text-base rounded-lg;
+
+        &:first-child {
+          @apply bg-green;
+        }
+
+        &:active {
+          transform: translateY(3px);
+        }
+      }
+    }
+
+    .footer {
+      @apply text-center;
+    }
+    .underLine {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background-color: red;
+    }
+
+    .underLineActive {
+      animation: underLine 2s ease forwards;
+    }
+  }
+}
+
+@keyframes underLine {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}

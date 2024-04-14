@@ -1,7 +1,7 @@
 .content {
-  @apply bg-modal px-2 py-2;
+  @apply bg-modal px-2 py-2 flex flex-col gap-2;
   .notification {
-    @apply flex justify-between items-center;
+    @apply flex justify-between items-center cursor-pointer hover:bg-bg transition-all py-1 px-2 rounded-sm;
     .title {
       @apply font-semibold;
     }

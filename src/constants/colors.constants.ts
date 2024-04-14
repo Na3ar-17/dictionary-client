@@ -5,4 +5,5 @@ export const COLORS = {
   text: '#fff',
   red: '#bb1313',
   modal: '#3a3a3a',
+  green: '#0c932a',
 }

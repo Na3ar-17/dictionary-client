@@ -32,6 +32,13 @@ class FolderService {
 
     return data
   }
+
+  async getOne(id: string, bookMarkId: string): Promise<IFolder> {
+    const { data } = await axios.get<IFolder>(
+      `${this.URL}/get-one/${id}/${bookMarkId}`
+    )
+    return data
+  }
 }
 
 export const folderService = new FolderService()

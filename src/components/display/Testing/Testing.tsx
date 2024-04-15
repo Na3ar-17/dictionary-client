@@ -3,6 +3,8 @@ import styles from './Testing.module.scss'
 import { useGetRandomRow } from '../../../api/hooks/row'
 import Error from '../../ui/error/Error'
 import Loader from '../../ui/loader/Loader'
+import { useEndSession, useGetStatistics } from '../../../api/hooks/statistics'
+import { dateFormatter } from '../../../api/utils'
 
 interface IProps {
   folderId: string
@@ -10,18 +12,28 @@ interface IProps {
 
 const Testing: FC<IProps> = ({ folderId }) => {
   const { data, isSuccess, isLoading, refetch } = useGetRandomRow(folderId)
-
+  const { endSession } = useEndSession()
+  const {
+    data: statisticsData,
+    isSuccess: isStatisticsSuccess,
+    isLoading: isStatisticsLoading,
+  } = useGetStatistics(folderId)
   const [isIDontKnow, setIsIDontKnow] = useState<boolean>(false)
+  console.log(statisticsData)
 
   const [isEnded, setIsEnded] = useState<boolean>(false)
   if (isLoading) return <Loader />
   if (!isSuccess) return <Error text="Cant fetch random row" />
+
+  if (isStatisticsLoading) return <Loader />
+  if (!isStatisticsSuccess) return <Error text="Cant fetch statistics" />
 
   const { word, id, translation } = data
 
   const handleTestEnd = () => {
     if (data.next === 0) {
       setIsEnded(!isEnded)
+      endSession(folderId)
     }
   }
 
@@ -90,6 +102,13 @@ const Testing: FC<IProps> = ({ folderId }) => {
             ></div>
           </>
         )}
+        <p>
+          Last session : {dateFormatter(statisticsData.lastSession.toString())}
+        </p>
+        <p>
+          Time to repear :
+          {dateFormatter(statisticsData.timeToNextSession.toString())}
+        </p>
       </div>
     </main>
   )

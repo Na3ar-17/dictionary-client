@@ -4,6 +4,7 @@ export const KEYS = {
   BOOK_MARK_UPDATE: 'book_mark_UPDATE',
   BOOK_MARK_DELETE: 'book_mark_DELETE',
   FOLDER: 'folder',
+  FOLDER_GET_ONE: 'folder_get_one',
   FOLDER_DELETE: 'folder_delete',
   FOLDER_UPDATE: 'folder_update',
   FOLDER_CREATE: 'folder_create',
@@ -15,4 +16,6 @@ export const KEYS = {
   NOTIFICATION: 'notificatio',
   NOTIFICATION_CREATE: 'notificatio_create',
   NOTIFICATION_DELETE: 'notificatio_delete',
+  STATISTICS: 'statistics',
+  SESSION_END: 'session_end',
 }

@@ -2,7 +2,7 @@
   @apply flex items-center justify-center;
 
   .modal {
-    @apply w-[600px] h-[200px] bg-bg p-5 relative;
+    @apply w-[600px] bg-bg p-5 relative;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 
@@ -13,7 +13,7 @@
     }
 
     .body {
-      @apply flex items-center justify-center h-[70%];
+      @apply flex items-center justify-center h-[100px];
       .btn {
         @apply px-5 py-2 bg-red text-center mr-3 text-base rounded-lg;
 

@@ -11,6 +11,13 @@ export const useGetFolders = (bookMarkId: string) => {
   })
 }
 
+export const useGetOneFolder = (id: string, bookMarkId: string) => {
+  return useQuery({
+    queryKey: [KEYS.FOLDER_GET_ONE],
+    queryFn: () => folderService.getOne(id, bookMarkId),
+  })
+}
+
 export const useDeleteFolder = (id: string, bookMarkId: string) => {
   const queryClient = useQueryClient()
   const { mutate: deleteFolder } = useMutation({
